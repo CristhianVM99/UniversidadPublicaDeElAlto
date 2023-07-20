@@ -91,6 +91,19 @@ export default {
   //},
 
   build: {
+    babel: {
+      presets({ isServer }) {
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              loose: true,
+              targets: isServer ? { node: 'current' } : { ie: '11' },
+            },
+          ],
+        ];
+      },
+    },
     extend(config, { isDev, isClient }) {
       // Agregar una regla para archivos .cjs
       config.module.rules.push({
