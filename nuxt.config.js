@@ -85,12 +85,12 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  //build: {
-  //  extend(config, ctx) {},
-  //  transpile: [/^vue2-google-maps($|\/)/],
-  //},
-
   build: {
+    extend(config, ctx) {},
+    transpile: [/^vue2-google-maps($|\/)/],
+  },
+
+  /*build: {
     babel: {
       presets({ isServer }) {
         return [
@@ -112,6 +112,6 @@ export default {
       });
     },
     transpile: [/^vue2-google-maps($|\/)/],
-  },
+  },*/
   buildDir: "dist",
 };
