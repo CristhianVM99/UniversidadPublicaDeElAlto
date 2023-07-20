@@ -85,8 +85,19 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
+  //build: {
+  //  extend(config, ctx) {},
+  //  transpile: [/^vue2-google-maps($|\/)/],
+  //},
+
   build: {
-    extend(config, ctx) {},
+    extend(config, { isDev, isClient }) {
+      // Agregar una regla para archivos .cjs
+      config.module.rules.push({
+        test: /\.cjs$/,
+        loader: 'babel-loader', // O el cargador que corresponda a tus necesidades
+      });
+    },
     transpile: [/^vue2-google-maps($|\/)/],
   },
   buildDir: "dist",
