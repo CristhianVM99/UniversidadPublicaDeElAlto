@@ -5,11 +5,10 @@
                 <div class="col-lg-5">
                     <div class="testimonial-heading-area">
                         <div class="section-title section-left" data-aos-delay="150" data-aos="fade-up" data-aos-duration="800">
-                            <span class="pre-title">Testimonials</span>
-                            <h2 class="title">What Our Students Have To Say</h2>
+                            <span class="pre-title">{{ preTitle }}</span>
+                            <h2 class="title">{{ title }}</h2>
                             <span class="shape-line"><i class="icon-19"></i></span>
-                            <p>Lorem ipsum dolor sit amet consectur adipiscing elit sed eiusmod tempor incididunt labore dolore magna aliquaenim ad minim.</p>
-                            <n-link to="#" class="edu-btn btn-large">View All<i class="icon-4"></i></n-link>
+                            <p>{{ content }}</p>                            
                         </div>
                     </div>
                 </div>
@@ -23,8 +22,8 @@
 
                                 </div>
                                 <div class="content">
-                                    <p>Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.</p>
-                                    <div class="rating-icon">
+                                    <p>{{ contentUpeaTv }}</p>
+                                    <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -32,7 +31,8 @@
                                         <i class="icon-23"></i>
                                     </div>
                                     <h5 class="title">Ray Sanchez</h5>
-                                    <span class="subtitle">Student</span>
+                                    <span class="subtitle">Student</span>-->
+                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
                                 </div>
                             </div>
                         </div>
@@ -41,11 +41,10 @@
                                 <div class="thumbnail">
                                     <img src="/images/testimonial/testimonial-02.png" alt="Testimonial">
                                     <span class="qoute-icon"><i class="icon-26"></i></span>
-
                                 </div>
                                 <div class="content">
-                                    <p>Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.</p>
-                                    <div class="rating-icon">
+                                    <p>{{ contentRadioUpea }}</p>
+                                    <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -53,7 +52,8 @@
                                         <i class="icon-23"></i>
                                     </div>
                                     <h5 class="title">Amber Page</h5>
-                                    <span class="subtitle">Designer</span>
+                                    <span class="subtitle">Designer</span>-->
+                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +65,8 @@
 
                                 </div>
                                 <div class="content">
-                                    <p>Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.</p>
-                                    <div class="rating-icon">
+                                    <p>{{ contentBiblioteca }}</p>
+                                    <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -74,7 +74,8 @@
                                         <i class="icon-23"></i>
                                     </div>
                                     <h5 class="title">Amber Page</h5>
-                                    <span class="subtitle">Designer</span>
+                                    <span class="subtitle">Designer</span>-->
+                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +87,8 @@
 
                                 </div>
                                 <div class="content">
-                                    <p>Lorem ipsum dolor amet consec tur elit adicing sed do usmod zx tempor enim minim veniam quis nostrud exer citation.</p>
-                                    <div class="rating-icon">
+                                    <p>{{ contentRepositorioInstitucional }}</p>
+                                    <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -95,7 +96,8 @@
                                         <i class="icon-23"></i>
                                     </div>
                                     <h5 class="title">Amber Page</h5>
-                                    <span class="subtitle">Designer</span>
+                                    <span class="subtitle">Designer</span>-->
+                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
                                 </div>
                             </div>
                         </div>
@@ -109,6 +111,8 @@
 
 
 <script>
+    /* STORE: variables globales */
+    import { useInstitucionStore } from '@/stores/store' 
     export default {
         data() {
             return {
@@ -138,7 +142,14 @@
                         type: 'bullets',
                         clickable: true
                     }
-                }
+                },
+                title: useInstitucionStore().titleMedios,
+                preTitle:useInstitucionStore().preTitleMedios,
+                content:useInstitucionStore().contentMedios,
+                contentUpeaTv:useInstitucionStore().contentUpeaTv,
+                contentRadioUpea:useInstitucionStore().contentRadioUpea,
+                contentBiblioteca:useInstitucionStore().contentBiblioteca,
+                contentRepositorioInstitucional:useInstitucionStore().contentRepositorioInstitucional,
             }
         }
     }

@@ -18,6 +18,8 @@
         <!-- INFORMACION DE LA LUCHA DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Information />
 
+        <TestimonialTwo />
+
         <!-- VIDEO INSTITUCION DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Video />
 
@@ -138,7 +140,8 @@
             Contacto: () => import("@/components/home-online-academy/ContactInfo"),
             Eventos: () => import("@/components/home-distant-learning/Course"),            
             Servicios: () => import("@/components/home-main/Blog"),
-            FooterOne: () => import("@/components/footer/FooterOne"),                                                
+            FooterOne: () => import("@/components/footer/FooterOne"),   
+            TestimonialTwo: () => import("@/components/testimonial/TestimonialTwo"),                                             
         },
         data() {
             return {

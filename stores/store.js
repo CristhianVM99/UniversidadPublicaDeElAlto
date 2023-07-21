@@ -209,6 +209,15 @@ export const useInstitucionStore = defineStore("Institucion", {
     preTitleServicios: 'Upea',
     titleServicios: 'Servicios',
 
+    /* MEDIOS UNIVERSITARIOS */
+    preTitleMedios: 'Upea',
+    titleMedios: 'Medios Universitarios',
+    contentMedios: 'Descubre la educación del futuro a través de nuestros medios universitarios: UPEA-TV y Radio-UPEA. Explora conocimientos en nuestro Repositorio Institucional y sumérgete en la riqueza de nuestra Biblioteca UPEA. Únete a la comunidad académica de la Universidad Pública de El Alto.',
+    contentUpeaTv: 'Únete a nuestra comunidad universitaria. Programas educativos, entrevistas y eventos académicos. ¡Descubre la vida universitaria!',
+    contentRadioUpea: 'La música, cultura y educación se encuentran aquí. Entrevistas, debates y noticias universitarias. ¡Sintoniza la UPEA!',
+    contentBiblioteca: 'Tu fuente de sabiduría. Amplia colección de libros, revistas y recursos multimedia. ¡Emprende el viaje del conocimiento!',
+    contentRepositorioInstitucional: 'El tesoro del conocimiento académico. Investigaciones, tesis y artículos actualizados. ¡Aprende y avanza!',
+
     /*
 
      CARRERAS (TODAS LAS CARREAS) ==========================================================
