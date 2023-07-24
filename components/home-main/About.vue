@@ -16,10 +16,10 @@
                                             </a>
                                         </span>
                                     </div>
-                                    <div class="loading-bar">
+                                    <!--<div class="loading-bar">
                                         <span></span>
                                         <span></span>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class="award-status bounce-slide">

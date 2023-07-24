@@ -18,10 +18,12 @@
         <!-- INFORMACION DE LA LUCHA DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Information />
 
-        <TestimonialTwo />
-
         <!-- VIDEO INSTITUCION DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
-        <Video />
+        <Video />        
+
+        <div style="height: 100px;"></div>
+
+        <TestimonialTwo />                
 
         <!-- INFORMACION DE LA UNIVERSIDAD PUBLICA DE EL ALTO MISION - VISION - OBJETIVOS. -->
         <Information_mvo />        
@@ -41,8 +43,16 @@
         <!-- EVENTOS DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Eventos />                        
 
+        <!--<Videos />-->
+
         <!-- SERVICIOS DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Servicios />
+
+        <!--<Noticias />-->
+
+        <Campus />
+
+        <div style="height: 100px;"></div>
         
         <!-- SECCION DE FOOTER -->
         <FooterOne />
@@ -141,7 +151,10 @@
             Eventos: () => import("@/components/home-distant-learning/Course"),            
             Servicios: () => import("@/components/home-main/Blog"),
             FooterOne: () => import("@/components/footer/FooterOne"),   
-            TestimonialTwo: () => import("@/components/testimonial/TestimonialTwo"),                                             
+            TestimonialTwo: () => import("@/components/testimonial/TestimonialTwo"),       
+            Campus: () => import("@/components/home-university/Campus"),      
+            Noticias: () => import("@/components/home-yoga-instructor/Course"),                                
+            Videos: () => import("@/components/home-online-academy/Videos")
         },
         data() {
             return {

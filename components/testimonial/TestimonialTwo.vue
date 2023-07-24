@@ -1,5 +1,5 @@
 <template>
-    <div class="testimonial-area-5 gap-lg-bottom-equal">        
+    <div class="testimonial-area-5 ">        
         <div class="container">
             <div class="row g-lg-5">
                 <div class="col-lg-5">
@@ -17,12 +17,15 @@
                         <div class="swiper-slide">
                             <div class="testimonial-grid">
                                 <div class="thumbnail">
-                                    <img src="/images/testimonial/testimonial-01.png" alt="Testimonial">
+                                    <img :src="imgUpeaTv" alt="Testimonial">
                                     <span class="qoute-icon"><i class="icon-26"></i></span>
 
                                 </div>
                                 <div class="content">
-                                    <p>{{ contentUpeaTv }}</p>
+                                    <h3>Upea Tv</h3>
+                                    <p>                                        
+                                        {{ contentUpeaTv }}
+                                    </p>
                                     <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -32,17 +35,18 @@
                                     </div>
                                     <h5 class="title">Ray Sanchez</h5>
                                     <span class="subtitle">Student</span>-->
-                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
+                                    <a href="https://tv.upea.bo/" target="_blank" class="edu-btn btn-large">Ver<i class="icon-4"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="testimonial-grid">
                                 <div class="thumbnail">
-                                    <img src="/images/testimonial/testimonial-02.png" alt="Testimonial">
+                                    <img :src="imgRadioUpea" alt="Testimonial">
                                     <span class="qoute-icon"><i class="icon-26"></i></span>
                                 </div>
                                 <div class="content">
+                                    <h3>Radio Upea</h3>
                                     <p>{{ contentRadioUpea }}</p>
                                     <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
@@ -53,18 +57,19 @@
                                     </div>
                                     <h5 class="title">Amber Page</h5>
                                     <span class="subtitle">Designer</span>-->
-                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
+                                    <a href="https://fm100.upea.bo/" target="_blank" class="edu-btn btn-large">Ver<i class="icon-4"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="testimonial-grid">
                                 <div class="thumbnail">
-                                    <img src="/images/testimonial/testimonial-03.png" alt="Testimonial">
+                                    <img :src="imgBiblioteca" alt="Testimonial">
                                     <span class="qoute-icon"><i class="icon-26"></i></span>
 
                                 </div>
                                 <div class="content">
+                                    <h3>Biblioteca Universitaria</h3>
                                     <p>{{ contentBiblioteca }}</p>
                                     <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
@@ -75,18 +80,19 @@
                                     </div>
                                     <h5 class="title">Amber Page</h5>
                                     <span class="subtitle">Designer</span>-->
-                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
+                                    <a href="http://mibiblioteca.upea.bo/" target="_blank" class="edu-btn btn-large">Ver<i class="icon-4"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="testimonial-grid">
                                 <div class="thumbnail">
-                                    <img src="/images/testimonial/testimonial-02.png" alt="Testimonial">
+                                    <img :src="imgRepositorioInstitucional" alt="Testimonial">
                                     <span class="qoute-icon"><i class="icon-26"></i></span>
 
                                 </div>
                                 <div class="content">
+                                    <h3>Repositorio Institucional</h3>
                                     <p>{{ contentRepositorioInstitucional }}</p>
                                     <!--<div class="rating-icon">
                                         <i class="icon-23"></i>
@@ -97,7 +103,30 @@
                                     </div>
                                     <h5 class="title">Amber Page</h5>
                                     <span class="subtitle">Designer</span>-->
-                                    <n-link to="#" class="edu-btn btn-large">Ver<i class="icon-4"></i></n-link>
+                                    <a href="http://repositorio.upea.bo/" target="_blank" class="edu-btn btn-large">Ver<i class="icon-4"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-grid">
+                                <div class="thumbnail">
+                                    <img :src="imgInstitutoInvestivacion" alt="Testimonial">
+                                    <span class="qoute-icon"><i class="icon-26"></i></span>
+
+                                </div>
+                                <div class="content">
+                                    <h3>Instituto de Investigacion</h3>
+                                    <p>{{ contentInstitutoInvestigacion }}</p>
+                                    <!--<div class="rating-icon">
+                                        <i class="icon-23"></i>
+                                        <i class="icon-23"></i>
+                                        <i class="icon-23"></i>
+                                        <i class="icon-23"></i>
+                                        <i class="icon-23"></i>
+                                    </div>
+                                    <h5 class="title">Amber Page</h5>
+                                    <span class="subtitle">Designer</span>-->
+                                    <a href="https://dicyt.upea.bo/" target="_blank" class="edu-btn btn-large">Ver<i class="icon-4"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -150,6 +179,12 @@
                 contentRadioUpea:useInstitucionStore().contentRadioUpea,
                 contentBiblioteca:useInstitucionStore().contentBiblioteca,
                 contentRepositorioInstitucional:useInstitucionStore().contentRepositorioInstitucional,
+                contentInstitutoInvestigacion: useInstitucionStore().contentInstitutoInvestigacion,
+                imgUpeaTv:useInstitucionStore().imgUpeaTv,
+                imgRadioUpea:useInstitucionStore().imgRadioUpea,
+                imgBiblioteca:useInstitucionStore().imgBiblioteca,
+                imgRepositorioInstitucional:useInstitucionStore().imgRepositorioInstitucional,
+                imgInstitutoInvestivacion: useInstitucionStore().imgInstitutoInvestivacion,
             }
         }
     }

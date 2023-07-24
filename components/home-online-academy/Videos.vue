@@ -1,15 +1,15 @@
 <template>
     <div class="edu-course-area course-area-6 edu-section-gap bg-lighten01">
         <div class="container">
-            <SectionTitle :preTitle='preTitleNoticias' preTitleClass='pre-textsecondary' :title='titleNoticias' alignment='section-center' />
+            <SectionTitle :preTitle='preTitleVideos' preTitleClass='pre-textsecondary' :title='titleVideos' alignment='section-center' />
             
             <swiper class="course-activation swiper" :options="swiperOptions">
                 <div 
                     class="swiper-slide"
-                    v-for="publicacion in publicaciones" 
-                    :key="encryptID(publicacion.publicaciones_id)"
+                    v-for="video in videosUniversidad.slice(0, 4)" 
+                    :key="encryptID(video.video_id)"
                 >
-                    <CourseTypeEight tipo="noticias" :coleccion="publicacion" />
+                    <CourseTypeEight tipo="videos" :coleccion="video" />
                 </div>
             </swiper>
             <div class="swiper-pagination"></div>
@@ -53,9 +53,9 @@
                         clickable: true
                     }
                 },
-                titleNoticias: useInstitucionStore().titleNoticias,
-                preTitleNoticias: useInstitucionStore().preTitleNoticias,
-                publicaciones: useInstitucionStore().publicacionesUniversidad,
+                titleVideos: useInstitucionStore().titleVideos,
+                preTitleVideos: useInstitucionStore().preTitleVideos,
+                videosUniversidad: useInstitucionStore().videosUniversidad,
                 clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },

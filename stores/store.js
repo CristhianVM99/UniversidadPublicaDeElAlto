@@ -209,6 +209,14 @@ export const useInstitucionStore = defineStore("Institucion", {
     preTitleServicios: 'Upea',
     titleServicios: 'Servicios',
 
+    /* NOTICIAS */
+    preTitleNoticias: 'Upea',
+    titleNoticias: 'Noticias',
+
+    /* VIDEOS */
+    preTitleVideos: 'Upea',
+    titleVideos: 'Videos',
+
     /* MEDIOS UNIVERSITARIOS */
     preTitleMedios: 'Upea',
     titleMedios: 'Medios Universitarios',
@@ -216,7 +224,45 @@ export const useInstitucionStore = defineStore("Institucion", {
     contentUpeaTv: 'Únete a nuestra comunidad universitaria. Programas educativos, entrevistas y eventos académicos. ¡Descubre la vida universitaria!',
     contentRadioUpea: 'La música, cultura y educación se encuentran aquí. Entrevistas, debates y noticias universitarias. ¡Sintoniza la UPEA!',
     contentBiblioteca: 'Tu fuente de sabiduría. Amplia colección de libros, revistas y recursos multimedia. ¡Emprende el viaje del conocimiento!',
+    contentInstitutoInvestigacion:'Sumérgete en el conocimiento interdisciplinario. Brillantes mentes, proyectos innovadores, impacto en múltiples áreas.',
     contentRepositorioInstitucional: 'El tesoro del conocimiento académico. Investigaciones, tesis y artículos actualizados. ¡Aprende y avanza!',
+    imgUpeaTv:'/images/Medios_Universitarios/upeatelevisionoficial.jpg',
+    imgRadioUpea:'/images/Medios_Universitarios/upearadiooficial.jpg',
+    imgBiblioteca:'/images/Medios_Universitarios/bibliotecaoficial.jpg',
+    imgRepositorioInstitucional:'/images/Medios_Universitarios/repositorio.png',
+    imgInstitutoInvestivacion:'/images/Medios_Universitarios/upeainvestigacionoficial.jpg',
+
+    //NAVEGADOR MEDIOS UNIVERSITARIOS
+    imgUpeaTvNav:'/images/Medios_Universitarios/tvupea.jpg',
+    imgRadioUpeaNav:'/images/Medios_Universitarios/radioupea.jpg',
+    imgPeriodicoUpeaNav:'/images/Medios_Universitarios/periodicoupea.jpg',
+    imgDisbed:'/images/Medios_Universitarios/disbed.jpg',
+
+
+    /* ENLACES Y SISTEMAS DE LA UNIVERSIDAD */
+    preTitleSistemas: 'Upea',
+    titleSistemas:'Nuestros Sistemas y Enlaces Universitarios.',
+    imgSistemasEnlaces: '/images/universidad/oficial/fondosistemas.jpg',
+    
+    //matriculacion    
+    titleMatriculacion: 'Matriculacion',
+    contentMatriculacion: 'Sistema de matriculación académica Estudiantíl - UPEA',
+    imgMatriculacion: '/images/Sistemas_Enlaces/Matricula.jpg',
+    urlMatriculacion: 'https://matriculacion.upea.bo/',
+    
+    //formulario 02 
+    titleFormulario02: 'Formulario 02',
+    contentFormulario02: 'La Universidad Publica de El Alto invita a todos los bachilleres a postularse a las diferentes carreras que ofrece nuestra universidad.',
+    imgFormulario02: '/images/Sistemas_Enlaces/Logo-Formulario.jpg',
+    urlFormulario02: 'https://admisionestudiantil.upea.bo/',
+
+    //CEUB
+    titleCeub: 'CEUB',
+    contentCeub: 'El Comité Ejecutivo de la Universidad Boliviana es el organismo central que representa al Sistema de la Universidad Boliviana',
+    imgCeub: '/images/Sistemas_Enlaces/Ceub.jpg',
+    urlCeub: 'https://www.ceub.edu.bo/portal/',
+
+
 
     /*
 

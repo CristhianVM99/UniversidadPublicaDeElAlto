@@ -17,15 +17,8 @@
                     </ul>
                 </li>
             </ul>          
-        </li>-->
-
-        <li class="has-droupdown"><n-link to="">Unidades Administrativas</n-link>
-            <ul class="submenu">
-                <li><a href="https://vicerrectorado.upea.bo/l">Vicerectorado</a></li>
-                <li><a href="https://www.sie.upea.bo/l">Unidad de Sistemas de Informacion y Estadistica</a></li>
-                <li><a href="https://registrosadmisiones.upea.bo/">Registros y Admiciones</a></li>
-            </ul>                    
-        </li>
+        </li>-->                
+        <li><n-link to="/course/course-one">Areas y Carreras</n-link></li>
 
         <li class="has-droupdown"><n-link to="">Avisos</n-link>
             <ul class="submenu">
@@ -37,7 +30,51 @@
                 <li><n-link to="/convocatorias/videos">Videos</n-link></li>                                
             </ul>
         </li>
+
         <li class="has-droupdown"><n-link to="">Mas</n-link>
+            <ul class="mega-menu">
+                <li>
+                    <h6 class="menu-title">Medios de Comunicación</h6>
+                    <ul class="submenu">
+                        <li><a href="https://fm100.upea.bo/" target="_blank"><img :src="imgRadioUpeaNav" alt=""></a></li>
+                        <li><a href="https://tv.upea.bo/" target="_blank"><img :src="imgUpeaTvNav" alt=""></a></li>
+                        <li><a href="http://www.upeaaldia.com/" target="_blank"><img :src="imgPeriodicoUpeaNav" alt=""></a></li>                                                
+                    </ul>
+                </li>
+                <li>
+                    <h6 class="menu-title">Ofertas Academicas</h6>
+                    <ul class="submenu">
+                        <li><a href="https://solid.upea.bo/" target="_blank">Becas</a></li>
+                        <li><a href="https://posgrado.upea.bo/" target="_blank">Convocatorias Posgrado</a></li>                        
+                    </ul>
+                </li>
+                <li>
+                    <h6 class="menu-title">Interaccion Social</h6>
+                    <ul class="submenu">
+                        <li><a href="https://solid.upea.bo/" target="_blank"><img :src="imgDisbed" alt="Disbec"></a></li>
+                        <p style="padding-left: 15px;">Dirección de Interacción Social, Bienestar Estudiantil y Deportes</p>
+                        <li><a href="https://solid.upea.bo/" target="_blank">Disbec</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h6 class="menu-title">Servicios Virtuales</h6>
+                    <ul class="submenu">
+                        <li><n-link to="/shop">Biblioteca Virtual</n-link></li>
+                        <li><n-link to="/shop/product-details">Sistema de informacion Estudiantil</n-link></li>                        
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li class="has-droupdown"><n-link to="">Unidades Administrativas</n-link>
+            <ul class="submenu">
+                <li><a target="_blank" href="https://vicerrectorado.upea.bo/l">Vicerectorado</a></li>
+                <li><a target="_blank" href="https://www.sie.upea.bo/l">Unidad de Sistemas de Informacion y Estadistica</a></li>
+                <li><a target="_blank" href="https://registrosadmisiones.upea.bo/">Registros y Admiciones</a></li>
+            </ul>                    
+        </li>        
+        
+        <!--<li class="has-droupdown"><n-link to="">Mas</n-link>
             <ul class="submenu">
                 <li><a href="http://repositorio.upea.bo/" target="_blank">Repositorio Institucional</a></li>
                 <li><a href="https://disbedc.upea.bo/" target="_blank">Disbec</a></li>
@@ -45,7 +82,7 @@
                 <li><a href="https://fm100.upea.bo/" target="_blank">Radio Upea</a></li>
                 <li><a href="https://tv.upea.bo/" target="_blank">Tv Upea</a></li>
             </ul>
-        </li>
+        </li>-->
     </ul>
 </template>
 <script>
@@ -55,6 +92,10 @@
             return {
                 menuAreasyCarreras: useInstitucionStore().menuAreasyCarreras,
                 linksCarreras: useInstitucionStore().linksCarreras,
+                imgUpeaTvNav: useInstitucionStore().imgUpeaTvNav,
+                imgRadioUpeaNav: useInstitucionStore().imgRadioUpeaNav,
+                imgPeriodicoUpeaNav: useInstitucionStore().imgPeriodicoUpeaNav,
+                imgDisbed: useInstitucionStore().imgDisbed,
             }
         },
         methods: {
