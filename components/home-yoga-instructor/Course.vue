@@ -6,10 +6,10 @@
             <swiper class="course-activation swiper" :options="swiperOptions">
                 <div 
                     class="swiper-slide"
-                    v-for="publicacion in publicaciones" 
-                    :key="encryptID(publicacion.publicaciones_id)"
+                    v-for="noticia in noticiasUniversidad" 
+                    :key="encryptID(noticia.publicaciones_id)"
                 >
-                    <CourseTypeEight tipo="noticias" :coleccion="publicacion" />
+                    <CourseTypeEight tipo="noticias" :coleccion="noticia" />
                 </div>
             </swiper>
             <div class="swiper-pagination"></div>
@@ -55,7 +55,7 @@
                 },
                 titleNoticias: useInstitucionStore().titleNoticias,
                 preTitleNoticias: useInstitucionStore().preTitleNoticias,
-                publicaciones: useInstitucionStore().publicacionesUniversidad,
+                noticiasUniversidad: useInstitucionStore().noticiasUniversidad,
                 clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },
@@ -66,6 +66,9 @@
                 return ciphertext
             }, 
         },
+        created(){
+            console.log(this.noticiasUniversidad)
+        }
     }
 </script>
 
