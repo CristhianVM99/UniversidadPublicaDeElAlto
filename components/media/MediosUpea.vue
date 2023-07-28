@@ -5,7 +5,7 @@
             <span class="user-info">
                 <span class="icon"><i class="icon-link"></i></span>
                 <span class="user-name">{{ link.ei_nombre }}</span>
-            </span>
+            </span>            
         </a>
     </div>
 </template>

@@ -20,6 +20,7 @@
                                 <ul class="footer-link link-hover">
                                     <li><n-link to="/convocatorias/publicaciones">Publicaciones</n-link></li>
                                     <li><n-link to="/convocatorias/servicios">Servicios</n-link></li>                
+                                    <li><n-link to="/convocatorias/noticias">Noticias</n-link></li>  
                                     <li><n-link to="/convocatorias/gacetas">Gacetas</n-link></li>
                                     <li><n-link to="/convocatorias/auditorias">Auditorias</n-link></li>
                                     <li><n-link to="/convocatorias/eventos">Eventos</n-link></li>
@@ -57,7 +58,8 @@
                                     <!--<li><a href="https://instagram.com/" target="_blank" class="color-ig"><i class="icon-instagram"></i></a></li>-->
                                     <li><a :href="twitter" target="_blank" class="color-twitter"><i class="icon-twitter"></i></a></li>
                                     <li><a :href="youtube" target="_blank" class="color-yt"><i class="icon-youtube"></i></a></li>
-                                </ul>                                
+                                </ul>                       
+                                <br>         
                                 <ul class="information-list">
                                     <li><span>Direccion:</span>{{direccion}}</li>
                                     <li><span>Telefono:</span><a href="tel:+011235641231">{{ telefono }}</a></li>

@@ -47,6 +47,9 @@
                             <n-link to="/convocatorias/servicios">servicios <span>({{ cant_ser }})</span></n-link>
                         </li>
                         <li>
+                            <n-link to="/convocatorias/noticias">noticias <span>({{ cant_not }})</span></n-link>
+                        </li>
+                        <li>
                             <n-link to="/convocatorias/eventos">eventos <span>({{ cant_eve }})</span></n-link>
                         </li>
                         <li>
@@ -157,6 +160,7 @@
             return {                
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
                 servicios: useInstitucionStore().serviciosUniversidad,            
+                noticias: useInstitucionStore().noticiasUniversidad,
                 gacetas: useInstitucionStore().gacetasUniversidad,
                 auditorias: useInstitucionStore().auditoriasUniversidad,
                 eventos: useInstitucionStore().eventosUniversidad,
@@ -178,6 +182,7 @@
                 this.cant_aud = Object.keys(this.auditorias).length
                 this.cant_vid = Object.keys(this.videos).length
                 this.cant_eve = Object.keys(this.videos).length
+                this.cant_not = Object.keys(this.noticias).length
             }
         },
         created() {

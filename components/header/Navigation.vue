@@ -24,6 +24,7 @@
             <ul class="submenu">
                 <li><n-link to="/convocatorias/publicaciones">Publicaciones</n-link></li>
                 <li><n-link to="/convocatorias/servicios">Servicios</n-link></li>                
+                <li><n-link to="/convocatorias/noticias">Noticias</n-link></li>                
                 <li><n-link to="/convocatorias/gacetas">Gacetas</n-link></li>
                 <li><n-link to="/convocatorias/auditorias">Auditorias</n-link></li>
                 <li><n-link to="/convocatorias/eventos">Eventos</n-link></li>
@@ -68,9 +69,9 @@
 
         <li class="has-droupdown"><n-link to="">Unidades Administrativas</n-link>
             <ul class="submenu">
-                <li><a target="_blank" href="https://vicerrectorado.upea.bo/l">Vicerectorado</a></li>
-                <li><a target="_blank" href="https://www.sie.upea.bo/l">Unidad de Sistemas de Informacion y Estadistica</a></li>
-                <li><a target="_blank" href="https://registrosadmisiones.upea.bo/">Registros y Admiciones</a></li>
+                <li v-for="(link, id_link) in linksNavUnidadesAdministrativas" :key="id_link">
+                    <a target="_blank" :href="link.ei_link">{{ capitalizeFirstLetter(link.ei_nombre) }}</a>
+                </li>                
             </ul>                    
         </li>        
         
@@ -96,6 +97,7 @@
                 imgRadioUpeaNav: useInstitucionStore().imgRadioUpeaNav,
                 imgPeriodicoUpeaNav: useInstitucionStore().imgPeriodicoUpeaNav,
                 imgDisbed: useInstitucionStore().imgDisbed,
+                linksNavUnidadesAdministrativas: useInstitucionStore().linksNavUnidadesAdministrativas
             }
         },
         methods: {
@@ -107,7 +109,13 @@
                     }
                 })
                 return link
+            },
+            capitalizeFirstLetter(text) {
+              return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
             }
+        },
+        created() {
+            console.log(this.linksNavUnidadesAdministrativas)
         },
     }
 </script>

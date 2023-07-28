@@ -2,7 +2,7 @@
     <div class="edu-course course-style-3" :class="extraClass">
 
         <!-- PUBLICACIONES Y SERVICIOS UNIVERSITARIOS y ALL =========================-->
-        <div v-if="tipo == 'publicaciones' || tipo == 'servicios' || tipo == 'All'">
+        <div v-if="tipo == 'publicaciones' || tipo == 'servicios' || tipo == 'All' || tipo == 'noticias'">
             <div class="inner">
             <div class="thumbnail">
                 <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(coleccion.publicaciones_id) }}">

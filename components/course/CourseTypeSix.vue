@@ -1,8 +1,8 @@
 <template>
     <div class="edu-course course-style-4 course-style-8" :class="extraClass">
-        <!-- PUBLICACIONES Y SERVICIOS UNIVERSITARIOS -->
+        <!-- PUBLICACIONES, SERVICIOS  Y NOTICIAS UNIVERSITARIOS -->
         <!-- PUBLICACIONES ALL DE CARRERAS -->
-        <div class="inner" v-if="tipo == 'publicaciones' || tipo == 'servicios' || tipo == 'All'">
+        <div class="inner" v-if="tipo == 'publicaciones' || tipo == 'servicios' || tipo == 'All' || tipo == 'noticias'">
             <div class="thumbnail">
                 <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(coleccion.publicaciones_id) }}">
                     <img  style="height:100%;width: 280px;object-fit: cover;" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">

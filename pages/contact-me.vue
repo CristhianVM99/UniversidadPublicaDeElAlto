@@ -1,6 +1,10 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
         
+        <div v-if="loading">
+            <Loader />
+        </div>
+
         <Header showHeaderTop="true" />
 
         <BreadCrumbTwo title='Contacto' />
@@ -121,6 +125,7 @@
     import emailjs from 'emailjs-com';
     export default {
         components: {
+            Loader: () => import('@/components/loaders/LoaderUniv'),
             Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             FooterOne: () => import("@/components/footer/FooterOne"),
@@ -130,7 +135,11 @@
             const useInstitucion = useInstitucionStore()
             if(useInstitucionStore().institucion == null){
                 const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+                const LinksUniversidad = await $axios.$get('/api/linksIntExtAll/'+ process.env.APP_ID_INSTITUCION)              
+                const LinksNavUnidadesAdministrativas = LinksUniversidad.filter(link => link.ei_tipo === "NAV_UNID_ADMIN")
                 useInstitucion.asignarInstitucion(institucion.Descripcion)  
+                useInstitucion.asignarLinksUniversidad(LinksUniversidad)
+                useInstitucion.asignarLinksUnidadesAdministrativas(LinksNavUnidadesAdministrativas)                             
             }
         }, 
         data() {
@@ -148,6 +157,7 @@
                 youtube: useInstitucionStore().institucion.institucion_youtube,
                 twitter: useInstitucionStore().institucion.institucion_twitter,
                 mapa: useInstitucionStore().institucion.institucion_api_google_map,
+                loading: true,
             }
         },
         methods: {
@@ -175,9 +185,12 @@
                 } );
             }
         },
+        mounted() {        
+            this.loading= false
+        },
         head() {
             return {
-                title: 'Contact Me'
+                title: 'Contacto'
             }
         }
     }

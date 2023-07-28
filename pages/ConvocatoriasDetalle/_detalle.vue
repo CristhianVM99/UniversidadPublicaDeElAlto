@@ -1,6 +1,10 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
 
+        <div v-if="loading">
+            <Loader />
+        </div>
+
         <Header showHeaderTop="true" />
 
         <BreadCrumbTwo :title='$route.params.detalle' v-if="$route.params.detalle != 'All'" />
@@ -46,6 +50,7 @@
     import blogData from '~/data/blog';
     export default {
         components: {
+            Loader: () => import('@/components/loaders/LoaderUniv'),
             Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             BlogSidebarOne: () => import('@/components/sidebar/BlogSidebarOne'),
@@ -54,12 +59,19 @@
         },
         async asyncData({ $axios }) {
             const useInstitucion = useInstitucionStore()
-            const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
-            useInstitucion.asignarInstitucion(institucion.Descripcion)                   
+            if(useInstitucionStore().institucion == null || useInstitucionStore().linksNavUnidadesAdministrativas == null){
+                const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+                const LinksUniversidad = await $axios.$get('/api/linksIntExtAll/'+ process.env.APP_ID_INSTITUCION)              
+                const LinksNavUnidadesAdministrativas = LinksUniversidad.filter(link => link.ei_tipo === "NAV_UNID_ADMIN")
+                useInstitucion.asignarInstitucion(institucion.Descripcion)  
+                useInstitucion.asignarLinksUniversidad(LinksUniversidad)
+                useInstitucion.asignarLinksUnidadesAdministrativas(LinksNavUnidadesAdministrativas)                             
+            }                  
             if(useInstitucionStore().publicacionesUniversidad == null || useInstitucionStore().serviciosUniversidad == null){                
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)
                 let publicaciones = []
-                let servicios = []                
+                let servicios = []      
+                let noticias = []          
                 /* CLASIFICAION DE PUBLICACIONES */
                 publicacionesUniversidad.forEach(pub => {
                     switch (pub.publicaciones_tipo) {
@@ -69,6 +81,9 @@
                         case 'PUBLICACION':
                             publicaciones.push(pub)
                             break;
+                        case 'NOTICIA':
+                            noticias.push(pub)
+                            break;
                         default:
                             publicaciones.push(pub)
                             break;
@@ -76,7 +91,7 @@
                 });
                 useInstitucion.asignarPublicacionesUniversidad(publicaciones)
                 useInstitucion.asignarServiciosUniversidad(servicios)
-
+                useInstitucion.asignarNoticiasUniversidad(noticias)
             }            
             if(useInstitucionStore().gacetasUniversidad == null || useInstitucionStore().auditoriasUniversidad == null){
                 const gacetasUniversidad = await $axios.$get('/api/gacetaunivAll/' + process.env.APP_ID_INSTITUCION)
@@ -126,12 +141,14 @@
                 id_coleccion: this.$route.query.id,
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
                 servicios: useInstitucionStore().serviciosUniversidad,
+                noticias: useInstitucionStore().noticiasUniversidad,
                 publicacionesCarreras : useInstitucionStore().publicacionesCarreras,
                 gacetas: useInstitucionStore().gacetasUniversidad,
                 auditorias: useInstitucionStore().auditoriasUniversidad,
                 eventos: useInstitucionStore().eventosUniversidad,
                 videos: useInstitucionStore().videosUniversidad,
-                carreras: useInstitucionStore().carreras,                
+                carreras: useInstitucionStore().carreras,          
+                loading: true,      
             }
         },
         computed: {
@@ -186,6 +203,13 @@
                             }
                         });
                         break;
+                    case 'noticias':
+                        this.noticias.forEach(e => {
+                            if(e.publicaciones_id == this.decryptID(this.id_coleccion)){
+                                this.coleccion = e
+                            }
+                        });
+                        break;   
                     case 'gacetas':
                         this.gacetas.forEach(e => {
                             if(e.gaceta_id == this.decryptID(this.id_coleccion)){
@@ -230,6 +254,9 @@
         },
         created() {
             this.createdComponent()
+        },
+        mounted() {        
+            this.loading= false
         },
         head() {
             return {

@@ -2,7 +2,7 @@
     <div class="edu-blog blog-style-4">
         <div class="inner">
             <div class="thumbnail">            
-                <img v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
+                <img v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
                 <img v-if="tipo == 'eventos'" :src="url_api + '/Eventos/' + coleccion.evento_imagen" :alt="coleccion.evento_titulo">
                 <iframe  
                     v-if="tipo == 'videos'"                      
@@ -20,23 +20,23 @@
             </div>
             <div class="content">
                 <div class="category-wrap">
-                    <h4 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" class="blog-category">{{ coleccion.publicaciones_tipo }}</h4>
+                    <h4 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'" class="blog-category">{{ coleccion.publicaciones_tipo }}</h4>
                     <h4 v-if="tipo == 'eventos'" class="blog-category">{{ coleccion.evento_tipo }}</h4>
                 </div>
                 <h3 class="title">
-                    <h2 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'">{{ coleccion.publicaciones_titulo }}</h2>
+                    <h2 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'">{{ coleccion.publicaciones_titulo }}</h2>
                     <h2 v-if="tipo == 'eventos'" >{{ coleccion.evento_titulo }}</h2>
                     <h2 v-if="tipo == 'gacetas' || tipo == 'auditorias'" >{{ coleccion.gaceta_titulo }}</h2>
                     <h2 v-if="tipo == 'videos'" >{{ coleccion.video_titulo }}</h2>
                 </h3>
                 <ul class="blog-meta">
-                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-27"></i>{{ coleccion.publicaciones_fecha }}</li>
+                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'"><i class="icon-27"></i>{{ coleccion.publicaciones_fecha }}</li>
                     <li v-if="tipo == 'eventos'"><i class="icon-27"></i>{{ coleccion.evento_fecha }}</li>
                     <li v-if="tipo == 'gacetas' || tipo == 'auditorias'"><i class="icon-27"></i>{{ convertirFecha(coleccion.gaceta_fecha) }}</li>
-                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-28"></i>{{ coleccion.publicaciones_autor }} / {{ coleccion.publicaciones_documento }}</li>
+                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'"><i class="icon-28"></i>{{ coleccion.publicaciones_autor }} / {{ coleccion.publicaciones_documento }}</li>
                     <li v-if="tipo == 'evento'"><i class="icon-28"></i>{{ coleccion.evento_lugar }} / {{ coleccion.evento_hora }}</li>
                 </ul>
-                <p v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" v-html="coleccion.publicaciones_descripcion"></p>
+                <p v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios' || tipo == 'noticias'" v-html="coleccion.publicaciones_descripcion"></p>
                 <p v-if="tipo == 'eventos'" v-html="coleccion.evento_descripcion"></p>
                 <p v-if="tipo == 'videos'" v-html="coleccion.video_breve_descripcion"></p>
                 <div v-if="tipo == 'gacetas' || tipo == 'auditorias'" class="read-more-btn">

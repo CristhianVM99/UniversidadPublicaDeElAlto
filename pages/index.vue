@@ -1,6 +1,10 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
 
+        <div v-if="loading">
+            <Loader />
+        </div>
+        
         <!-- SECCION DE HEADER DE LA PAGINA -->
         <Header showHeaderTop="true" />
         
@@ -54,12 +58,10 @@
 
         <Noticias />
 
-        <Campus />
-
-        <div style="height: 100px;"></div>
+        <!--<Campus />-->
         
         <!-- SECCION DE FOOTER -->
-        <FooterOne />
+        <FooterOne />        
     </div>
 </template>
 
@@ -81,6 +83,11 @@
                 const useInstitucion = useInstitucionStore()     
                 const publicacionesCarreras = [];                       
                 const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+
+                /* obtenemos la imagen principal para el banner */
+                const img_pricipal = institucion.Descripcion.portada.filter(port => port.portada_titulo === "BANNER")
+                const imgBannerPrincipal = process.env.APP_ROOT_API + '/InstitucionUpea/Portada/' + img_pricipal[0].portada_imagen
+
                 let carreras  = await $axios.$get('api/upeacarrera')                                        
                 let instituciones = await $axios.$get('/api/InstitucionUPEA')                  
 
@@ -99,6 +106,7 @@
                 const gacetasUniversidad = await $axios.$get('/api/gacetaunivAll/' + process.env.APP_ID_INSTITUCION)
                 const videosUniversidad = await $axios.$get('/api/VideosAll/' + process.env.APP_ID_INSTITUCION)
                 const LinksUniversidad = await $axios.$get('/api/linksIntExtAll/'+ process.env.APP_ID_INSTITUCION)              
+                const LinksNavUnidadesAdministrativas = LinksUniversidad.filter(link => link.ei_tipo === "NAV_UNID_ADMIN")
                 const LinksMedios = LinksUniversidad.filter(link => link.ei_tipo === "MEDIOS")
 
                 /* CLASIFICACION DE GACETAS */
@@ -129,7 +137,8 @@
                 });
 
                 /* ASIGNAR DATOS: ingresamos datos al stores para que los demas componente puedan y tengan acceso a los mismos */
-                useInstitucion.asignarInstitucion(institucion.Descripcion)                   
+                useInstitucion.asignarInstitucion(institucion.Descripcion)   
+                useInstitucion.asignarImgBannerPrincipalUpea(imgBannerPrincipal)                
                 useInstitucion.asignarCarreras(carreras)  
                 useInstitucion.asignarMenuAreasyCarreras(menuAreasyCarreras)                           
                 useInstitucion.asignarPublicacionesCarreras(publicacionesCarreras)
@@ -142,8 +151,9 @@
                 useInstitucion.asignarAuditoriasUniversidad(auditorias)
                 useInstitucion.asignarVideosUniversidad(videosUniversidad)
                 useInstitucion.asignarLinksUniversidad(LinksUniversidad)
-                useInstitucion.asignarLinksMedios(LinksMedios)
-                return { institucion, }
+                useInstitucion.asignarLinksMedios(LinksMedios)   
+                useInstitucion.asignarLinksUnidadesAdministrativas(LinksNavUnidadesAdministrativas)             
+                return { institucion, imgBannerPrincipal}
             } catch (e) {
                 /*publicaciones de los errores en la consola. */
                 console.log(e)
@@ -170,12 +180,14 @@
             Campus: () => import("@/components/home-university/Campus"),      
             Noticias: () => import("@/components/home-yoga-instructor/Course"),                                
             Videos: () => import("@/components/home-online-academy/Videos"),
-            Medios: () => import('@/components/home-online-academy/MediosUniversitarios')
+            Medios: () => import('@/components/home-online-academy/MediosUniversitarios'),
+            Loader: () => import('@/components/loaders/LoaderUniv')
         },
         data() {
             return {
                 carrera_colores : useInstitucionStore().institucion.colorinstitucion,
-                color_intermedio: useInstitucionStore().color_intermedio,                
+                color_intermedio: useInstitucionStore().color_intermedio,                   
+                loading: true,             
             };
         },
         methods: {            
@@ -200,6 +212,9 @@
         },
         created(){
             this.createdComponent()
+        },
+        mounted() {        
+            this.loading= false
         },
         head() {
             return {

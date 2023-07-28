@@ -1,6 +1,5 @@
 <template>
-    <div class="hero-banner hero-style-3 bg-image bg-image--17">
-        <!--<img src="https://abi.bo/images/Noticias/Politica/oct-22/elalto.jpg" alt="upe">-->
+    <div class="hero-banner hero-style-3 bg-image bg-image--17" :style="backgroundStyle">
         <div class="container edublink-animated-shape">
             <div class="row">
                 <div class="col-xl-6 col-lg-7">
@@ -9,7 +8,7 @@
                         <h1 class="title">{{ this.institucion_nombre }}</h1>
                         <p>{{ this.frase }}</p>
                         <div class="banner-btn">
-                            <n-link to="/course/course-one" class="edu-btn btn-secondary">Carreras <i class="icon-4"></i></n-link>
+                            <n-link to="/course/course-one" class="edu-btn btn-secondary">Areas y Carreras <i class="icon-4"></i></n-link>
                         </div>
                     </div>
                 </div>
@@ -34,10 +33,18 @@
                 institucion_nombre: useInstitucionStore().institucion.institucion_nombre,
                 frase: useInstitucionStore().frase,
                 celular: useInstitucionStore().institucion.institucion_celular1,
+                imgBannerPrincipal: useInstitucionStore().imgBannerPrincipal,
             };
         },
         components: {
             MouseMove: () => import('@/components/animation/MouseMove')
-        }
+        },
+        computed: {
+            backgroundStyle() {
+                return {
+                    'background-image': `url(${this.imgBannerPrincipal}) !important`,
+                };
+            }
+        },        
     }
 </script>

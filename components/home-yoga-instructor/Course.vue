@@ -33,7 +33,7 @@
                 swiperOptions: {
                     slidesPerView: 1,
                     spaceBetween: 0,
-                    loop: true,
+                    loop: false,
                     grabCursor: true,
                     speed: 1000,
                     autoplay: {
@@ -65,10 +65,7 @@
                 const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
                 return ciphertext
             }, 
-        },
-        created(){
-            console.log(this.noticiasUniversidad)
-        }
+        },        
     }
 </script>
 

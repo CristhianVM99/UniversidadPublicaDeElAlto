@@ -20,6 +20,7 @@ export const useInstitucionStore = defineStore("Institucion", {
     linksCarrerasAll: null, 
     linksUniversidad: null,       
     linksMedios: null,
+    linksNavUnidadesAdministrativas: null,
 
     /*
 
@@ -28,9 +29,7 @@ export const useInstitucionStore = defineStore("Institucion", {
      */
     /* BANNER:  */
     frase: 'La Universidad del pueblo y para el pueblo',
-    imgBanner1: '/images/universidad/oficial/fondobanner1.jpg',
-    imgBanner2: '/images/universidad/oficial/fondobanner2.jpg',
-    imgBanner3: '/images/universidad/oficial/fondobanner3.png',
+    imgBannerPrincipal: '',
 
     /* ABOUT */
     titleAbout: 'Desafiando barreras "La lucha imparable de la Universidad Pública de El Alto"',
@@ -46,6 +45,11 @@ export const useInstitucionStore = defineStore("Institucion", {
 
     /* AUTORIDADES  */
     autoridadesSeccionTitulo: 'Nuestras Autoridades',
+
+    /* PERFIL DE AUTORIDADES */
+    pretitleAutoridades: '',
+    titleAutoridades: '',
+
 
     /* PUBLICACIONES CARRERAS */
     titlePublicacionesCarreras: 'Comunicados Universitarios',
@@ -76,8 +80,8 @@ export const useInstitucionStore = defineStore("Institucion", {
 
     /* MEDIOS UNIVERSITARIOS */
     preTitleMedios: 'Upea',
-    titleMedios: 'Medios Universitarios',
-    contentMedios: 'Descubre la educación del futuro a través de nuestros medios universitarios: UPEA-TV y Radio-UPEA. Explora conocimientos en nuestro Repositorio Institucional y sumérgete en la riqueza de nuestra Biblioteca UPEA. Únete a la comunidad académica de la Universidad Pública de El Alto.',
+    titleMedios: 'Medios de comunicacion',
+    contentMedios: 'UPEA Digital, Radio UPEA y UPEA Televisión son iniciativas educativas y culturales de la Universidad Pública de El Alto (UPEA) en Bolivia. Ofrecen una experiencia emocionante y enriquecedora con recursos educativos en línea, programas de radio variados y contenido cultural en televisión. ¡Descubre una nueva dimensión de aprendizaje y entretenimiento con UPEA!',
     contentUpeaTv: 'Únete a nuestra comunidad universitaria. Programas educativos, entrevistas y eventos académicos. ¡Descubre la vida universitaria!',
     contentRadioUpea: 'La música, cultura y educación se encuentran aquí. Entrevistas, debates y noticias universitarias. ¡Sintoniza la UPEA!',
     contentBiblioteca: 'Tu fuente de sabiduría. Amplia colección de libros, revistas y recursos multimedia. ¡Emprende el viaje del conocimiento!',
@@ -135,6 +139,9 @@ export const useInstitucionStore = defineStore("Institucion", {
     asignarInstitucion(colection){
       this.institucion = colection
     },
+    asignarImgBannerPrincipalUpea(string){
+      this.imgBannerPrincipal = string
+    },
     asignarCarreras(colection){
       this.carreras = colection
     },
@@ -173,6 +180,9 @@ export const useInstitucionStore = defineStore("Institucion", {
     },  
     asignarLinksMedios(colection){
       this.linksMedios = colection
-    }  
+    },  
+    asignarLinksUnidadesAdministrativas(colection){
+      this.linksNavUnidadesAdministrativas = colection
+    }
   }
 });

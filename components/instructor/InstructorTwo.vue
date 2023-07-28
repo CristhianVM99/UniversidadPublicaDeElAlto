@@ -3,7 +3,7 @@
         <div class="inner">
             <div class="thumbnail-wrap">
                 <div class="thumbnail">
-                    <n-link to="/" exact>
+                    <n-link :to="{ path: '/Autoridad/'+cargo, query: { id: encryptID(autoridad.id_autoridad) }}">
                         <img :src="url_api + '/InstitucionUpea/Autoridad/' + autoridad.foto_autoridad" alt="" />
                     </n-link>
                 </div>
@@ -24,12 +24,24 @@
 </template>
 
 <script>
+    /* STORE: variables globales */
+    import { useInstitucionStore } from '@/stores/store' 
+    import CryptoJS from 'crypto-js'
     export default {
         props: ['autoridad'],
         data() {
             return {
-                url_api: process.env.APP_ROOT_API
+                url_api: process.env.APP_ROOT_API,
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
+                cargo: 'Universidad', //para mejorar el sistema con un cargo 
             }
+        },
+        methods: {
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptación
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            },
         },
     }
 </script>

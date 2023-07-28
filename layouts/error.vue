@@ -1,7 +1,7 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
         
-        <HeaderOne />
+        <Header showHeaderTop="true" />
 
         <BreadCrumbTwo title="Error-404" />
 
@@ -40,6 +40,7 @@
 <script>
     export default {
         components: {
+            Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             FooterOne: () => import("@/components/footer/FooterOne"),
             ScrollToTop: () => import('@/components/footer/ScrollToTop'),

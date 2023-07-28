@@ -1,6 +1,10 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
 
+        <div v-if="loading">
+            <Loader />
+        </div>
+        
         <Header showHeaderTop="true" />
 
         <BreadCrumbTwo :title='$route.params.categoria'  v-if="$route.params.categoria != 'All'"/>
@@ -49,6 +53,16 @@
                         v-for="(servicio) in servicios" :key="encryptID(servicio.publicaciones_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="servicio" extraClass="course-box-shadow" />
+                    </div>
+                </div>
+
+                <!-- noticias -->
+                <div class="row g-5" v-if="$route.params.categoria == 'noticias'">
+                    <div 
+                        class="col-md-6 col-lg-4"                        
+                        v-for="(noticia) in noticias" :key="encryptID(noticia.publicaciones_id)"
+                    >
+                        <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="noticia" extraClass="course-box-shadow" />
                     </div>
                 </div>
 
@@ -124,19 +138,25 @@
     import courseData from '~/data/course';
     export default {
         components: {
+            Loader: () => import('@/components/loaders/LoaderUniv'),
             Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             CourseTypeTwo: () => import('@/components/course/CourseTypeTwo'),
             FooterOne: () => import("@/components/footer/FooterOne")
         },
-        async asyncData({ $axios }) {                        
+        async asyncData({ $axios }) {               
+            let noticias = []
             const useInstitucion = useInstitucionStore()
             const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
             useInstitucion.asignarInstitucion(institucion.Descripcion)   
         
-            if(useInstitucionStore().institucion == null){
+            if(useInstitucionStore().institucion == null || useInstitucionStore().linksNavUnidadesAdministrativas == null){
                 const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+                const LinksUniversidad = await $axios.$get('/api/linksIntExtAll/'+ process.env.APP_ID_INSTITUCION)              
+                const LinksNavUnidadesAdministrativas = LinksUniversidad.filter(link => link.ei_tipo === "NAV_UNID_ADMIN")
                 useInstitucion.asignarInstitucion(institucion.Descripcion)  
+                useInstitucion.asignarLinksUniversidad(LinksUniversidad)
+                useInstitucion.asignarLinksUnidadesAdministrativas(LinksNavUnidadesAdministrativas)                             
             }
             if(useInstitucionStore().carreras == null){
                 const carreras  = await $axios.$get('api/upeacarrera')    
@@ -155,6 +175,9 @@
                         case 'PUBLICACION':
                             publicaciones.push(pub)
                             break;
+                        case 'NOTICIA':
+                            noticias.push(pub)
+                            break;
                         default:
                             publicaciones.push(pub)
                             break;
@@ -162,6 +185,7 @@
                 });
                 useInstitucion.asignarPublicacionesUniversidad(publicaciones)
                 useInstitucion.asignarServiciosUniversidad(servicios)
+                useInstitucion.asignarNoticiasUniversidad(noticias)
 
             } 
             if(useInstitucionStore().gacetasUniversidad == null || useInstitucionStore().auditoriasUniversidad == null){
@@ -194,6 +218,7 @@
                 defaultNumberOfCourses: 9,
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
                 servicios: useInstitucionStore().serviciosUniversidad,
+                noticias: useInstitucionStore().noticiasUniversidad,
                 publicacionesAll:useInstitucionStore().publicacionesCarreras,
                 gacetas: useInstitucionStore().gacetasUniversidad,
                 auditorias: useInstitucionStore().auditoriasUniversidad,
@@ -202,6 +227,7 @@
                 carreras: useInstitucionStore().carreras,
                 cantidad: 0,
                 clave_encryptacion: useInstitucionStore().clave_encryptacion,
+                loading: true,
             }
         },
         computed: {
@@ -241,7 +267,10 @@
                             this.cantidad = Object.keys(this.publicaciones).length
                         break;
                     case 'servicios':
-                            this.cantidad = Object.keys(this.publicaciones).length
+                            this.cantidad = Object.keys(this.servicios).length
+                        break;
+                    case 'noticias':
+                            this.cantidad = Object.keys(this.noticias).length
                         break;
                     case 'gacetas':
                             this.cantidad = Object.keys(this.gacetas).length
@@ -269,6 +298,9 @@
         },
         created() {
             this.createdComponent()
+        },
+        mounted() {        
+            this.loading= false
         },
         head() {
             return {

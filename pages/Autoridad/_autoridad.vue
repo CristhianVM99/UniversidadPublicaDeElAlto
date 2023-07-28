@@ -3,7 +3,7 @@
                 
         <Header showHeaderTop="true" />
 
-        <BreadCrumbTwo pageTitle='Instructor Profile' title='Instructor Profile' />
+        <BreadCrumbTwo pageTitle='Autoridad' title='autoridad' />
 
         <div class="edu-team-details-area section-gap-equal">
             <div class="container">
@@ -11,25 +11,24 @@
                     <div class="col-lg-4">
                         <div class="team-details-thumb">
                             <div class="thumbnail">
-                                <img src="/images/team/team-02/team-07.jpg" alt="team">
+                                <img :src="url_api + '/InstitucionUpea/Autoridad/' + autoridad.foto_autoridad" alt="" />
                             </div>
                             <ul class="social-share">
-                                <li><a href="#"><i class="icon-share-alt"></i></a></li>
-                                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                                <li><a target="_blank" :href="autoridad.celular_autoridad"><i class="icon-phone"></i></a></li>
+                                <li><a target="_blank" :href="autoridad.facebook_autoridad"><i class="icon-facebook"></i></a></li>
+                                <li><a target="_blank" :href="autoridad.twiter_autoridad"><i class="icon-twitter"></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="team-details-content">
                             <div class="main-info">
-                                <span class="subtitle">Instructor</span>
-                                <h3 class="title">Edward Narton</h3>
-                                <span class="designation">Developer and Teacher</span>
+                                <span class="subtitle">{{ $route.params.autoridad }}</span>
+                                <h3 class="title">{{ autoridad.nombre_autoridad }}</h3>
+                                <!--<span class="designation">{{ autoridad.cargo_autoridad }}</span>-->
                                 <ul class="team-meta">
-                                    <li><i class="icon-25"></i>20 Students</li>
-                                    <li>
+                                    <li><i class="icon-25"></i>{{ autoridad.cargo_autoridad }}</li>
+                                    <!--<li>
                                         <div class="rating">
                                             <i class="icon-23"></i>
                                             <i class="icon-23"></i>
@@ -38,20 +37,19 @@
                                             <i class="icon-23"></i>
                                         </div>
                                         <span class="rating-count">(720 Rating)</span>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                             <div class="bio-describe">
-                                <h4 class="title">About Me</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur elit sed do eius mod tempor incidid labore dolore magna aliqua. enim ad minim eniam quis nostrud exercitation ullamco laboris nisi aliquip ex commodo consequat. duis aute irure dolor in repreed ut perspiciatis unde omnis iste natus error sit voluptat em acus antium.</p>
-                                <p>doloremque laudantium totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi arch itecto beatae vitae dicta sunt explicabo.</p>
+                                <h4 class="title">Acerca de la Autoridad</h4>
+                                <p>Descripcion de la Autoridad</p>
                             </div>
                             <div class="contact-info">
-                                <h4 class="title">Contact Me</h4>
+                                <h4 class="title">Contacto</h4>
                                 <ul>
-                                    <li><span>Address:</span>North Helenavile, FV77 8WS</li>
-                                    <li><span>Email:</span><a href="mailto:edublink@example.com" target="_blank">edublink@example.com</a></li>
-                                    <li><span>Phone:</span><a href="tel:+37(417)683-4409">+37 (417) 683-4409</a></li>
+                                    <li><span>Direccion:</span>Direccion de la Universidad Publica de El Alto.</li>
+                                    <li><span>Correo:</span><a href="mailto:edublink@example.com" target="_blank">correo@gmail.com</a></li>
+                                    <li><span>Celular:</span><a href="tel:+37(417)683-4409">+591 {{ autoridad.celular_autoridad }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -86,6 +84,7 @@
 <script>
     /* STORE: variables globales */
     import { useInstitucionStore } from '@/stores/store' 
+    import CryptoJS from 'crypto-js'
     import courseData from '~/data/course';
     export default {
         async asyncData({ $axios }) {               
@@ -100,21 +99,47 @@
             }                                                          
         },
         components: {
-            //HeaderOne: () => import("@/components/header/HeaderOne"),
             Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import('@/components/common/BreadCrumbTwo'),
             SectionTitle: () => import('@/components/common/SectionTitle'),
-            //CourseTypeOne: () => import('@/components/course/CourseTypeOne'),
             FooterOne: () => import("@/components/footer/FooterOne")
         },
         data () {
             return {
-                courseData
+                courseData,
+                url_api: process.env.APP_ROOT_API,
+                autoridades: useInstitucionStore().institucion.autoridad,  
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
+                id_coleccion: this.$route.query.id,
+                autoridad: {},
             }
+        },
+        methods: {
+            decryptID(ciphertext) {
+                const encryptionKey = this.clave_encryptacion; // Cambia esto por tu clave de encriptación
+                const bytes = CryptoJS.AES.decrypt(ciphertext, encryptionKey);
+                const decryptedID = bytes.toString(CryptoJS.enc.Utf8);
+                return decryptedID;
+            },
+            recorrerAutoridad(){
+                this.autoridades.forEach(aut => {
+                    if(aut.id_autoridad == this.decryptID(this.id_coleccion)){
+                        console.log(aut)
+                        this.autoridad = aut
+                        console.log("autoridad",this.autoridad)
+                    }
+                });
+            },
+            createdComponent(){
+                this.recorrerAutoridad()
+            }
+        },
+        created() {            
+            this.createdComponent()
         },
         head() {
             return {
-                title: 'Instructor Profile'
+                title: 'Upea | Autoridades'
             }
         }
     }
