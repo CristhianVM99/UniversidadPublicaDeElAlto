@@ -29,12 +29,12 @@
         <!-- VIDEO INSTITUCION DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Video />        
 
-        <div style="height: 100px;"></div>
-
         <!--<TestimonialTwo />-->
 
         <!-- INFORMACION DE LA UNIVERSIDAD PUBLICA DE EL ALTO MISION - VISION - OBJETIVOS. -->
         <Information_mvo />        
+
+        <Noticias />
 
         <!-- AUTORIDADES DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Autoridades />        
@@ -54,9 +54,7 @@
         <!--<Videos />-->
 
         <!-- SERVICIOS DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
-        <Servicios />
-
-        <Noticias />
+        <Servicios />        
 
         <!--<Campus />-->
         
@@ -202,7 +200,7 @@
                   document.documentElement.style.setProperty('--color-secondary',color_secundario);
                   document.documentElement.style.setProperty('--color-tertiary',color_terciario);
                   document.documentElement.style.setProperty('--color-textSecondary',color_primario);                
-                  document.documentElement.style.setProperty('--color-btn',`linear-gradient(to left,${color_primario},${this.color_intermedio},${color_secundario})`)
+                  document.documentElement.style.setProperty('--color-btn',`linear-gradient(to left,${color_primario},${color_primario}`)
                 }
               }
             },   

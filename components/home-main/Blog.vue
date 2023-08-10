@@ -3,17 +3,20 @@
         <div class="container">
             <SectionTitle :preTitle='preTitle' :title='title' alignment='section-center' />
 
-            <div class="row g-5">
-                <div 
-                    class="col-lg-4 col-md-6 col-12" 
-                    data-aos-delay="100" 
-                    data-aos="fade-up" 
-                    data-aos-duration="800"
-                    v-for="servicio in servicios.slice(-3).reverse()" :key="encryptID(servicio.publicaciones_id)"
-                >
-                    <BlogPostOne :servicio="servicio" />
+            <swiper class="course-activation swiper" :options="swiperOptions">
+                <div class="row g-5">
+                    <div 
+                        class="col-lg-4 col-md-6 col-12" 
+                        data-aos-delay="100" 
+                        data-aos="fade-up" 
+                        data-aos-duration="800"
+                        v-for="servicio in servicios.slice(-3).reverse()" :key="encryptID(servicio.publicaciones_id)"
+                    >
+                        <BlogPostOne :servicio="servicio" />
+                    </div>
                 </div>
-            </div>
+            </swiper>
+            <div class="swiper-pagination"></div>
         </div>
         <ul class="shape-group">
             <MouseMove addClassName="shape-1" dataDepth="-1.4" imgSrc="/images/about/shape-02.png" />
@@ -36,6 +39,29 @@
         data () {
             return {
                 blogData,
+                swiperOptions: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: false,
+                    grabCursor: true,
+                    speed: 1000,
+                    autoplay: {
+                        delay: 3000
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 2
+                        },
+                        992: {
+                            slidesPerView: 3
+                        }
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'bullets',
+                        clickable: true
+                    }
+                },
                 preTitle: useInstitucionStore().preTitleServicios,
                 title: useInstitucionStore().titleServicios,
                 servicios: useInstitucionStore().serviciosUniversidad,

@@ -162,7 +162,7 @@
         transition: all 1s cubic-bezier(0, 0, 0.2, 1);
         border-radius: 50%;
         //background: var(--color-secondary);
-        background: linear-gradient(45deg, var(--color-primary),var(--color-quaternary), var(--color-secondary));
+        background: var(--color-secondary);
         margin: 0 auto;
         display: inline-block;
         font-size: 24px;

@@ -115,7 +115,6 @@
             }
         },
         created() {
-            console.log(this.linksNavUnidadesAdministrativas)
         },
     }
 </script>
